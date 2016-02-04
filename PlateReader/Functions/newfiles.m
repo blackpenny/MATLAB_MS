@@ -17,6 +17,8 @@ matchdata=arrayfun(@(file)any(strcmp(regexprep(file.name,'\.xlsx$',''),olddata))
 %% make a list of the files in Data
 namedata=arrayfun(@(filename)regexprep(filename.name,'\.xlsx$',''),files,'uniform',false);
 
+%% delete any entry that starts with '~$'
+
 %% find the new files and import
 new=find(matchdata==0);
 lnew=length(new);
@@ -25,7 +27,9 @@ if lnew==0;
     disp('No new files');
 else
     for i1=1:lnew
-        newName{i1,1}=namedata{new(i1),1};
+        if isempty(regexp(namedata{new(i1),1},'~$*','match'))
+            newName{i1,1}=namedata{new(i1),1};
+        end
     end
 end
 

@@ -17,7 +17,7 @@ select(:,1)=data.sampleNames; % load sample names
 
 for i2=2:numel(data.channels)+1 % load tick boxes and set to false
     for i3=1:numel(data.sampleNames)
-        select{i3,i2}=false;
+        select{i3,i2}=true;
     end
 end
 

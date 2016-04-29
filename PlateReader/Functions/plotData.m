@@ -9,7 +9,7 @@ FSize=15; % Font size
 MSize=3; % Marker size
 colors={'MidnightBlue','LightCyan';'FireBrick','LightYellow';'SlateGray','LightGray';'DarkGreen','PaleGreen';'DeepPink','Pink';'DarkSlateBlue','Thistle'};
 
-% different channels
+%% different channels
 for i0=1:size(data.filter,2);
     nSample=0;
     for i1 = 1:size(data.filter,1);

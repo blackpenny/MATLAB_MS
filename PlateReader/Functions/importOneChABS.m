@@ -1,10 +1,9 @@
-function [time,channels]=importOneCh(input)
-%importing data from one fluorescence channel
+function [time,channels]=importOneChABS(input)
+%importing data from one absorbance channel
 
 %% extract the channel information
-dataEx=regexp(input{7,4},'(\d*)','tokens');
-dataEm=regexp(input{7,4},', (\d\d\d)','tokens');
-channels{1} = strcat('Ex',dataEx{1,1}{1,1},'Em',dataEm{1,1}{1,1});
+dataEx=regexp(input{7,4},'(\d\d\d)','tokens');
+channels{1} = strcat('OD',dataEx{1,1}{1,1});
 
 %% extract the times of the datapoints
 for i=4:size(input,2);

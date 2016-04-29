@@ -12,14 +12,18 @@ data = struct();
 data.fileName = fileName;
 data.sampleNames = txt(9:end, 3);
 
-%% extract time and no. of channels
-
-% only one channel
-if  isempty(regexp(txt{4,1},'multichromatic','match'))
-    [time, channels]=importOneCh(txt);
-else
+%% check for ABS or FI and extract time an no. of channels
+if  ~isempty(regexp(txt{4,1},'Fluorescence','match')) && isempty(regexp(txt{4,1},'multichromatic','match'))
+    % only one channel
+   % if  isempty(regexp(txt{4,1},'multichromatic','match'))
+        [time, channels]=importOneCh(txt);
+elseif  ~isempty(regexp(txt{4,1},'Fluorescence','match')) && ~isempty(regexp(txt{4,1},'multichromatic','match'))
     % more than one channel
-    [time, channels]=importMultiCh(txt);
+        [time, channels]=importMultiCh(txt);
+elseif ~isempty(regexp(txt{4,1},'Absorbance','match'))
+    [time, channels]=importOneChABS(txt);
+else
+    disp('error 42')
 end
 
 %% write in data structure

@@ -42,7 +42,7 @@ t.Position(4) = t.Extent(4);
 %% callback function
     function giveOut(hObject,callbackdata)
         data.sampleNames = t.Data(:, 1);
-        data.filter = cell2mat(t.Data(:, 2:end));
+        data.filter = cell2mat(t.Data(:, 2));
     end
 
 %%
